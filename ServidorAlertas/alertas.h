@@ -15,6 +15,10 @@ extern "C" {
 
 #define MAXNOM 30
 
+struct nodo_indicadores {
+	float frecuenciaCardiaca;
+};
+typedef struct nodo_indicadores nodo_indicadores;
 struct nodo_paciente {
 	char nombres[MAXNOM];
 	int edad;
@@ -23,10 +27,7 @@ struct nodo_paciente {
 };
 typedef struct nodo_paciente nodo_paciente;
 
-struct nodo_indicadores {
-	float frecuenciaCardiaca;
-};
-typedef struct nodo_indicadores nodo_indicadores;
+
 
 #define gestion_alertas 0x20000001
 #define gestion_alertas_version 1

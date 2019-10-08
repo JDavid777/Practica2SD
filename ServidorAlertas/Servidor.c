@@ -5,15 +5,32 @@
  */
 
 #include "alertas.h"
+#include "notificaciones.h"
 
 bool_t *
 enviarindicador_1_svc(nodo_paciente *argp, struct svc_req *rqstp)
 {
 	static bool_t  result;
 
-	/*
-	 * insert server code here
-	 */
+	CLIENT *clnt;
+	bool_t  *result_1;
+	char * enviarnotificacion_2_arg;
+	char * dirIpServidorNotificaciones="localhost";
+#ifndef	DEBUG
+	clnt = clnt_create (dirIpServidorNotificaciones, gestion_notificaciones, gestion_notificaiones_version, "udp");
+	if (clnt == NULL) {
+		clnt_pcreateerror (dirIpServidorNotificaciones);
+		exit (1);
+	}
+#endif	/* DEBUG */
+
+	result_1 = enviarnotificacion_2(&enviarnotificacion_2_arg, clnt);
+	if (result_1 == (bool_t *) NULL) {
+		clnt_perror (clnt, "call failed");
+	}
+#ifndef	DEBUG
+	clnt_destroy (clnt);
+#endif	 /* DEBUG */
 
 	return &result;
 }

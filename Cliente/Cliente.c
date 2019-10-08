@@ -7,6 +7,7 @@
 #include "alertas.h"
 
 
+
 void
 gestion_alertas_1(char *host)
 {
